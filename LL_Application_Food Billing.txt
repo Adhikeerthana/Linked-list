@@ -1,0 +1,221 @@
+Food Court – Billing System
+ 
+A popular food court in the mall decides to give points for each order which is equal to the total amount of the bill, inorder to maintain this system as a simple one each customer is provided an e-card which will keep track of each and every bill of the particular customer and generates scores for the customer and store it in the card.
+
+Now, the food court wants to upgrade the system by developing with some additional functionally such as showing the list of transaction and view the sum of gained score. If you think you can help them for developing such app, let's start at this point.
+
+ 
+
+Define a structure
+struct food_court
+{
+    int bill_amount;
+    struct food_court * link;
+};
+
+Include functions:
+    append --- to add new bill amount.
+    display --- to display all the bill paid by the customer.
+    sum --- returns sum of the total score gained by the customer.
+ 
+void append(struct food_court**,int);
+void display(struct food_court*);
+int sum(struct food_court*);
+
+
+Refer function specifications for further details.
+[Note: The stmt. 'Elements in the linked list are' should be in the main function.]
+
+Input and Output Format:
+Refer sample input and output for formatting specifications.
+
+[All text in bold corresponds to input and the rest corresponds to output.]
+
+Sample Input and Output 1:
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+1
+Pay bill amount:
+20
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+2
+Card transactions :
+20
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+1
+Pay bill amount:
+25
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+1
+Pay bill amount:
+200
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+2
+Card transactions :
+20
+25
+200
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+3
+Gained points :245
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+4
+Please visit again
+
+Sample Input and Output 2:
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+2
+No transactions found
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+3
+Your score is NIL
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+1
+Pay bill amount:
+25
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+1
+Pay bill amount:
+500
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+2
+Card transactions :
+25
+500
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+3
+Gained points :525
+1.Visit the food court
+2.View my transactions
+3.Show my points
+Enter your choice
+4
+Please visit again
+
+
+
+PROGRAM:
+
+
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+    }
+} 
+class List{
+    Node head,tail;
+    public void insert(int data){//Insertion
+        Node n=new Node(data);
+        if(head==null){
+            head=n;
+            tail=n;
+        }
+        else{
+            tail.next=n;
+            tail=n;
+        }
+    }
+    public void display(){//Display
+        if(head==null){
+            System.out.println("Empty");
+            return;
+        }
+        Node temp=head;
+        System.out.println("Card Transactions:");
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.next;
+        }
+    }
+    public void points(){//Sum of bill amount 
+        int s=0;
+        Node temp=head;
+        while(temp!=null){
+            s+=temp.data;
+            temp=temp.next;
+        }
+        System.out.println("Gained Points:"+s);
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		List l=new List();
+		int i=1;
+		while(i>0 && i<4){
+		    System.out.println("1.Visit the food court");
+            System.out.println("2.View my transactions");
+            System.out.println("3.Show my points");
+            System.out.println("Enter your choice");
+            int ch=sc.nextInt();
+            switch(ch){
+                case 1:
+                    System.out.println("Pay bill amount:");
+                    int data=sc.nextInt();
+                    l.insert(data);
+                    break;
+                case 2:
+                    l.display();
+                    break;
+                case 3:
+                    l.points();
+                    break;
+                default:
+                    System.out.println("Visit again");
+                    return;
+            }
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
